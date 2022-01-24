@@ -1,4 +1,7 @@
-
 div#modal1 {
     overflow-y: visible;
-  }
+}
+
+body {
+    overflow-x: hidden;
+}
