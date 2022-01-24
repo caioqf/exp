@@ -5,15 +5,24 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon ./a/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caioqf/exp.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/caioqf/exp/issues"
+  },
+  "homepage": "https://github.com/caioqf/exp#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.2"
+  },
   "devDependencies": {
     "nodemon": "^2.0.15"
-  },
-  "dependencies": {
-    "express": "^4.17.2"
   }
 }

@@ -11,3 +11,56 @@ document.addEventListener('DOMContentLoaded', ()=>{
        M.Modal.init(singleModalElem)
     })
 })
+
+var btnModalRegister = document.querySelector('#register-modal')
+
+btnModalRegister.addEventListener('click',async e => {
+
+    var data = []
+
+    var fName = document.querySelector('#fName').value
+    var sName = document.querySelector('#sName').value
+    var email = document.querySelector('#modal-email').value
+    var pass = document.querySelector('#modal-password').value
+    var gender = document.querySelector('#gender').value
+
+    data = [
+        {
+            name: fName,
+            second_name: sName,
+            email: email,
+            pass: pass,
+            gender: gender
+        }
+    ]
+
+    // var myInit = { method: 'POST',
+    //         accept: 'applicatiom',
+    //         headers: {
+    //             'Accept': 'application/json',
+    //             'Content-Type':'application/json'
+    //             },
+    //         mode: 'cors',
+    //         cache: 'default',
+    //         body: data 
+    //         };
+
+    // const url = 'http://localhost:3000/registrar'
+    // const res = await fetch(url, myInit)
+    //     .then(response => {
+    //         return response.json()
+    //     })
+    // console.log('api = ', res)
+
+    const rawResponse = await fetch('http://localhost:3000/registrar', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+      const content = await rawResponse.json();
+    
+      console.log(content);
+
+})
