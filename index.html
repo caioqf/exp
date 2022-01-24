@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <!-- Compiled and minified CSS -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="style.css">
+     <title>Log</title>
+</head>
+<body>
+<div class="container center-align">
+    <div class="row">
+        <form class="col s12 offset-l3">
+            <div class="row">
+                <div class="input-field col s7">
+                    <input id="email" type="email" class="validate">
+                    <label for="email">Email</label>
+                  </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s7">
+                    <input id="password" type="password" class="validate">
+                    <label for="password">Senha</label> 
+                </div>
+            </div>
+            <div class="row">
+                <button data-target="modal1" class="btn modal-trigger col s2 offset-l1 orange darken-4" id="register">Registrar</button>
+                <button class="btn col s2 offset-l1" id="enter"> Entrar</button>
+            </div>
+        </form>
+    </div>
+</div>
+    
+<!--MODALS-->
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <h4>Registre-se</h4>
+        <form class="container col s12 offset-l5">
+            <div class="row">
+                <div class="input-field col s6">
+                    <input id="fName" type="text" class="validate">
+                    <label for="name">Nome</label>
+                  </div>
+                <div class="input-field col s6">
+                    <input id="sName" type="text" class="validate">
+                    <label for="sName">Sobrenome</label> 
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="modal-email" type="email" class="validate">
+                    <label for="modal-email">Email</label>
+                  </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s7">
+                    <input id="modal-password" type="password" class="validate">
+                    <label for="modal-password">Senha</label> 
+                </div>
+                <div class="input-field col s5">
+                    <select class="browser-default" id="gender">
+                        <option value="" disabled selected="selected">Selecione uma opção</option>
+                        <option value="1">Masculino</option>
+                        <option value="2">Feminino</option>
+                        <option value="3">Outro</option>
+                    </select>
+                </div>
+            </div>
+
+            </div>
+            <div class="row">
+                <button data-target="modal1" class="btn modal-trigger col offset-l5 orange darken-4" id="register-modal">Registrar</button>
+            </div>
+        </form>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat ">Voltar</a>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="./index.js"></script>
+</body>
+</html>
