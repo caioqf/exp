@@ -26,14 +26,13 @@ var dataBase =
   ]
 }
 
+export function getUsers(){
+  return dataBase.users
+}
 
 function isUserRegistered(userDataJson){
   
   //checar se o email passado pelo JSON existe no "banco de dados"
-  // const newArray = [
-  //   userDataJson
-  // ]
-  console.log(userDataJson.email);
 
   let result = dataBase.users.filter(e => e.email === userDataJson.email)
   if(result.length){
