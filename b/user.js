@@ -3,25 +3,25 @@ var dataBase =
   users:
   [
     {
-      first_name: null,
-      second_name: null,
-      gender: null,
+      first_name: "Caio",
+      second_name: "Faria",
+      gender: "M",
       email: "caio8200@gmail.com",
-      password: null,
+      password: "131322%!@ASGA",
     },
     {
       first_name: "Pedro",
       second_name: "Faria",
       gender: "M",
       email: "pedro@gmail.com",
-      password: "123456"
+      password: "1234ASFAS56"
     },
     {
       first_name: "Arthur",
       second_name: "Veiga",
       gender: "M",
       email: "arthur@gmail.com",
-      password: "1746"
+      password: "17FASF@46"
     },
   ]
 }
@@ -38,9 +38,17 @@ function isUserRegistered(userDataJson){
 
 export function registerNewUser(userDataJson){
 
-  if(isUserRegistered(userDataJson)){
-    
-  }
+  if(!isUserRegistered(userDataJson)){
 
+    try {
+      dataBase.users.push(userDataJson)
+      console.log('Usuário cadastrado com sucesso.');
+      console.log(dataBase.users);
+    } catch (error) {
+      console.log(error)
+    }
+  }else{
+    console.log('Email ja cadastrado.');
   }
+}
 
