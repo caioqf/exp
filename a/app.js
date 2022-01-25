@@ -11,15 +11,14 @@ app.use(cors())
 
 app.get('/', (req, res)=> {
     
-    res.send('api no ar...')
-
+    res.send('API Rodando aqui')
 })
 
-app.post('/registrar', (req, res) => {
+
+app.post('/user', (req, res) => {
     
-    var body = req.body
-    
-    registerNewUser(body)
-    
+    var response = registerNewUser(req.body)
+    res.send(response)
 })
+
 app.listen(PORT, () => console.log(`Server running on port: http://localhost:${PORT}`))

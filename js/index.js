@@ -1,5 +1,3 @@
-
-
 document.addEventListener('DOMContentLoaded', ()=>{
     //carregar todos modais da pagina com a tag .modal
     // var elemens = document.querySelectorAll('.modal')
@@ -13,30 +11,50 @@ document.addEventListener('DOMContentLoaded', ()=>{
        M.Modal.init(singleModalElem)
     })
 })
+var btnLogin = document.querySelector('#enter')
+
+btnLogin.addEventListener('click', async ()=> {
+
+    let data_login = [
+        {
+            email: document.getElementById('email'),
+            password: document.getElementById('password'),
+        }
+    ]
+
+    const rawResponse = await fetch('http://localhost:3000/logar', {
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json'
+        },
+        body: JSON.stringify(data_login)
+    })
+    const content = await rawResponse.json()
+    console.log(content);
+})
 
 var btnModalRegister = document.querySelector('#register-modal')
 
 btnModalRegister.addEventListener('click',async e => {
 
-    var data = [
-        {
-            name: document.querySelector('#fName').value,
-            second_name: document.querySelector('#sName').value,
-            email: document.querySelector('#modal-email').value,
-            pass: document.querySelector('#modal-password').value,
-            gender: document.querySelector('#gender').value
-        }
-    ]
+    let data_register =  {
+        first_name: document.querySelector('#fName').value,
+        second_name: document.querySelector('#sName').value,
+        gender: document.querySelector('#gender').value,
+        email: document.querySelector('#modal-email').value,
+        password: document.querySelector('#modal-password').value
+    }
     
     // envia os dados do form por JSON pra api
-    const rawResponse = await fetch('http://localhost:3000/registrar', {
+    const rawResponse = await fetch('http://localhost:3000/user', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(data_register)
       });
+
       const content = await rawResponse.json();
-    
-      console.log(content)
+
+
 })
