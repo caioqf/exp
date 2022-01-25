@@ -37,30 +37,30 @@
 <div id="modal1" class="modal">
     <div class="modal-content">
         <h4 class="col s7">Registre-se</h4>
-        <form class="container col s12 offset-l5">
+        <form id="form-modal" name="form-modal" method="post" class="container col s12 offset-l5">
             <div class="row">
                 <div class="input-field col s6">
-                    <input id="fName" type="text" class="validate">
+                    <input id="fName" name="fName" type="text" class="validate">
                     <label for="name">Nome</label>
                   </div>
                 <div class="input-field col s6">
-                    <input id="sName" type="text" class="validate">
+                    <input id="sName" name="sName" type="text" class="validate">
                     <label for="sName">Sobrenome</label> 
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="modal-email" type="email" class="validate">
+                    <input id="modal-email" name="modal-email" type="email" class="validate">
                     <label for="modal-email">Email</label>
                   </div>
             </div>
             <div class="row">
                 <div class="input-field col s7">
-                    <input id="modal-password" type="password" class="validate">
+                    <input id="modal-password" name="modal-pass" type="password" class="validate">
                     <label for="modal-password">Senha</label> 
                 </div>
                 <div class="input-field col s5">
-                    <select class="browser-default" id="gender">
+                    <select class="browser-default" id="gender" name="select-gender">
                         <option value="" disabled selected="selected">Selecione uma opção</option>
                         <option value="M">Masculino</option>
                         <option value="F">Feminino</option>

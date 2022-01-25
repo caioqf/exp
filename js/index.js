@@ -1,3 +1,5 @@
+
+
 document.addEventListener('DOMContentLoaded', ()=>{
     //carregar todos modais da pagina com a tag .modal
     // var elemens = document.querySelectorAll('.modal')
@@ -16,42 +18,17 @@ var btnModalRegister = document.querySelector('#register-modal')
 
 btnModalRegister.addEventListener('click',async e => {
 
-    var data = []
-
-    var fName = document.querySelector('#fName').value
-    var sName = document.querySelector('#sName').value
-    var email = document.querySelector('#modal-email').value
-    var pass = document.querySelector('#modal-password').value
-    var gender = document.querySelector('#gender').value
-
-    data = [
+    var data = [
         {
-            name: fName,
-            second_name: sName,
-            email: email,
-            pass: pass,
-            gender: gender
+            name: document.querySelector('#fName').value,
+            second_name: document.querySelector('#sName').value,
+            email: document.querySelector('#modal-email').value,
+            pass: document.querySelector('#modal-password').value,
+            gender: document.querySelector('#gender').value
         }
     ]
-
-    // var myInit = { method: 'POST',
-    //         accept: 'applicatiom',
-    //         headers: {
-    //             'Accept': 'application/json',
-    //             'Content-Type':'application/json'
-    //             },
-    //         mode: 'cors',
-    //         cache: 'default',
-    //         body: data 
-    //         };
-
-    // const url = 'http://localhost:3000/registrar'
-    // const res = await fetch(url, myInit)
-    //     .then(response => {
-    //         return response.json()
-    //     })
-    // console.log('api = ', res)
-
+    
+    // envia os dados do form por JSON pra api
     const rawResponse = await fetch('http://localhost:3000/registrar', {
         method: 'POST',
         headers: {
@@ -61,6 +38,5 @@ btnModalRegister.addEventListener('click',async e => {
       });
       const content = await rawResponse.json();
     
-      console.log(content);
-
+      console.log(content)
 })

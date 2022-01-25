@@ -1,5 +1,5 @@
 div#modal1 {
-    overflow-y: hidden;
+    overflow-y: auto;
 }
 
 body {

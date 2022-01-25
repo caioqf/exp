@@ -23,6 +23,7 @@
     "express": "^4.17.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "var_dump": "^1.0.5"
   }
 }

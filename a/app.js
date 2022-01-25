@@ -1,6 +1,7 @@
-import express from 'express'
-import bodyParser from 'body-parser'
-import cors from 'cors'
+import express from 'express';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import {registerNewUser} from '/home/caio/Documentos/js/exp/b/user.js';
 
 const app = express();
 const PORT = 3000;
@@ -8,16 +9,17 @@ const PORT = 3000;
 app.use(bodyParser.json())
 app.use(cors())
 
-// app.get('/pegar', (req, res)=> {
+app.get('/', (req, res)=> {
     
-//     res.send({nome: 'caio'})
+    res.send('api no ar...')
 
-// })
+})
 
 app.post('/registrar', (req, res) => {
+    
     var body = req.body
-    console.log(body);
-
+    
+    registerNewUser(body)
     
 })
 app.listen(PORT, () => console.log(`Server running on port: http://localhost:${PORT}`))
