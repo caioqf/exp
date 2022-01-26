@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import {registerNewUser, getUsers} from '/home/caio/Documentos/js/exp/b/user.js';
+import { getUsers, registerNewUser} from '../b/user.js';
 
 const app = express();
 const PORT = 3000;

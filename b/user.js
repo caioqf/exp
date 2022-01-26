@@ -27,7 +27,7 @@ var dataBase =
 }
 
 export function getUsers(){
-  return dataBase.users
+  return dataBase
 }
 
 function isUserRegistered(userDataJson){
