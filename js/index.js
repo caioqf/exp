@@ -52,9 +52,10 @@ btnModalRegister.addEventListener('click',async e => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(data_register)
-      });
-
-      const content = await rawResponse.json();
-
-
-})
+      })
+        const content = await rawResponse.json()
+        if (content.code === "404") {
+            window.alert('EMAIL JA CADASTRADO')
+        }
+    })  
+   

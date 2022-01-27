@@ -11,7 +11,7 @@ app.use(cors())
 
 app.get('/', (req, res)=> {
     
-    res.send('API Rodando aqui')
+    res.send('API Rodando aqui')    
 })
 
 app.get('/user', (req, res)=> {
