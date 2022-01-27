@@ -56,6 +56,9 @@ btnModalRegister.addEventListener('click',async e => {
         const content = await rawResponse.json()
         if (content.code === "404") {
             window.alert('EMAIL JA CADASTRADO')
+        } 
+        else if(content.code === "200") {
+            window.alert('USUARIO CADASTRADO COM SUCESSO')
         }
     })  
    

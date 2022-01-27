@@ -22,6 +22,7 @@ app.post('/user', (req, res) => {
     
     var response = registerNewUser(req.body)
     res.send(response)
+    
 })
 
 app.listen(PORT, () => console.log(`Server running on port: http://localhost:${PORT}`))
