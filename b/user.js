@@ -41,7 +41,6 @@ function isUserRegistered(userDataJson){
   return false
 }
 
-
 export function registerNewUser(userDataJson){
   if(!isUserRegistered(userDataJson)){
     try {
