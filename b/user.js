@@ -1,3 +1,4 @@
+import { getUsersDb } from "../a/db.js"
 var dataBase = 
 {
   users:
@@ -26,8 +27,8 @@ var dataBase =
   ]
 }
 
-export function getUsers(){
-  return dataBase
+export async function getUsers(){
+    return await getUsersDb()
 }
 
 function isUserRegistered(userDataJson){
