@@ -45,9 +45,8 @@ export function registerNewUser(userDataJson){
   if(!isUserRegistered(userDataJson)){
     try {
       dataBase.users.push(userDataJson)
-      // console.log(dataBase.users);
       console.log('Usuário cadastrado com sucesso.');
-      return { code: '200' }
+      return { "code": "200" }
       
     } catch (error) {
       console.log(error)
@@ -55,7 +54,7 @@ export function registerNewUser(userDataJson){
 
   }else{
     console.log("esse email ja ta cadastrado");
-    return { code: '404' }
+    return { "code": "404"}
   }
 
 }
