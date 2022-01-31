@@ -16,6 +16,7 @@ export async function getAllUsersDb(){
     try {
         await pool.connect()
         let result = await pool.query("select * from usuarios")
+        console.log(result.rows);
         return result.rows
 
     } catch (error) {
@@ -27,7 +28,6 @@ export async function verifyUserEmailDb(email){
         //conecta ao db
         await pool.connect()
 
-        
         const query = {
             text: 'select * from usuarios where email = $1',
             values: [email],
