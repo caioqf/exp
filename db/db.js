@@ -12,6 +12,7 @@ export async function getAllUsersDb(){
         console.log(`[ERRO]: ${error}`);
     }
 }
+
 export async function isUserRegistered(emailArg){
 
         let exists = myknex.select('email')
@@ -25,6 +26,7 @@ export async function isUserRegistered(emailArg){
 
         return await exists;
 }
+
 export async function registerNewUserDb(userDataJson){
     try{
         // ao invés de criar uma const pra salt, é possivel passar direto
@@ -51,15 +53,14 @@ export async function registerNewUserDb(userDataJson){
 export async function loginUserDb(emailUser, passwordUser){
     
     try {
-        const pass = await myknex('usuarios')
+        let pass = await myknex('usuarios')
         .select('pass')
         .where({
             email: emailUser
         }).pluck('pass')
-
-        console.log(typeof JSON.stringify(pass));
-
-        if(await bcrypt.compare(passwordUser, '')) {
+        
+        //possivel gambiarra abaixo 
+        if(await bcrypt.compare(passwordUser, JSON.stringify(pass).replace(/[\[\]"]+/g,''))) {
             console.log('é igual');
             return true
         } else {
