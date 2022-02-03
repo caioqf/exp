@@ -1,6 +1,7 @@
 import { getAllUsersDb, isUserRegistered, loginUserDb, registerNewUserDb } from "../db/db.js"
 
 export async function getUsers(){
+  //createDb()
   var dataBase = await getAllUsersDb()
   return dataBase
 }

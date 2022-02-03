@@ -1,6 +1,18 @@
 import myknex from '../knex/db_knex.js';
 import bcrypt, { hash } from 'bcrypt';
 
+// export async function createDb(){
+//     myknex.schema.createTable('usuarios', function(table) {
+//         table.increments();
+//         table.string('first_name')
+//         table.string('second_name')
+//         table.string('gender')
+//         table.string('email')
+//         table.string('pass')
+    
+//     })
+// }
+
 export async function getAllUsersDb(){
     try {
 
