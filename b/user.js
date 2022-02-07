@@ -9,13 +9,12 @@ export async function getUsers(){
 export async function registerNewUser(userDataJson){
   if(!await isUserRegistered(userDataJson.email)){
     registerNewUserDb(userDataJson)
-    return true
-  }else return false
-  
+  }
 }
 
 export async function loginUser(userDataJson){
   if (await isUserRegistered(userDataJson.email)) {
     loginUserDb(userDataJson.email, userDataJson.password)
-  }
+    return true
+  }else return false
 }

@@ -22,8 +22,8 @@ app.get('/user', async (req, res)=> {
 app.post('/user', (req, res) => {
     
     var response = registerNewUser(req.body)
-    res.status(200).send(response)
-    
+    res.send(response)
+     
 })
 
 app.post('/user/login', (req, res) => {
