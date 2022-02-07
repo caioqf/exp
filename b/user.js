@@ -15,6 +15,9 @@ export async function registerNewUser(userDataJson){
 export async function loginUser(userDataJson){
   if (await isUserRegistered(userDataJson.email)) {
     loginUserDb(userDataJson.email, userDataJson.password)
+    .then(token => {
+      console.log('TOKEN: ',token);
+    })
     return true
   }else return false
 }

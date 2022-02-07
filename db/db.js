@@ -1,5 +1,9 @@
 import myknex from '../knex/db_knex.js';
 import bcrypt, { hash } from 'bcrypt';
+import jsonwebtoken from 'jsonwebtoken';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 // export async function createDb(){
 //     myknex.schema.createTable('usuarios', function(table) {
@@ -71,10 +75,11 @@ export async function loginUserDb(emailUser, passwordUser){
         //possivel gambiarra abaixo 
         if(await bcrypt.compare(passwordUser, JSON.stringify(pass).replace(/[\[\]"]+/g,''))) {
             console.log('é igual');
-            return true
+            const accessToken = jsonwebtoken.sign(emailUser, process.env.ACESS_TOKEN_SECRET)
+            return { accessToken: accessToken}
         } else {
             console.log('nao é igual');
-            return false
+            return { accessToken: false }
             }
 
     } catch (err) {
