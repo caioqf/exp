@@ -39,13 +39,13 @@ export async function isUserRegistered(emailArg){
         return await exists;
 }
 
-export async function registerNewUserDb(userDataJson){
-    try{
-        // ao invés de criar uma const pra salt, é possivel passar direto
-        //pelo segundo parametro de hash() o tamaho da salt, no caso abaixo, 10
-        // const salt = await bcrypt.genSalt()
-        let hashPass = await bcrypt.hash(userDataJson.password, 10)
+export async function registerNewUserDb(userDataJson){   
 
+    // ao invés de criar uma const pra salt, é possivel passar direto
+    //pelo segundo parametro de hash() o tamaho da salt, no caso abaixo, 10
+    // const salt = await bcrypt.genSalt()
+
+    let hashPass = await bcrypt.hash(userDataJson.password, 10)
     myknex('usuarios')
     .insert({
         first_name: userDataJson.first_name,
@@ -57,9 +57,6 @@ export async function registerNewUserDb(userDataJson){
     .catch(err => {
         console.log(`[ERROR]: ${err}`);
     })
-    }catch (err){
-        console.log(err);
-    }
 }
 
 export async function loginUserDb(emailUser, passwordUser){
