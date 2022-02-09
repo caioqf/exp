@@ -1,6 +1,6 @@
 import jsonwebtoken from "jsonwebtoken";
 
-const authMiddleware = async (req, res) => {
+const authMiddleware = async (req, res, next) => {
     const authHeader = req.headers.authorization;
 
     if(!authHeader || !authHeader.startsWith('Bearer ')){
@@ -11,14 +11,10 @@ const authMiddleware = async (req, res) => {
 
     const token = authHeader.split(' ')[1]
 
-    try {
-        
-        next()
-        
-    } catch (error) {
-        // throw new Error()
-        res.sendStatus(401)
-    }
-}
 
-export { authMiddleware }; 
+    jsonwebtoken.verify(token, process.env.JWT_SECRET, (err, user)=> {
+        if(err) return res.sendStatus(401)
+        next()
+    })
+}
+export { authMiddleware }
