@@ -44,53 +44,63 @@
 import myknex from '../knex/db_knex.js';
 import express from "express";
 import jsonwebtoken from "jsonwebtoken";
+import bcrypt, { hash } from 'bcrypt';
 
 // nao loga nem registra nada de fato. No momento apenas implementando a validação de token
 // num register/login fake
 const login = async (req, res) => {
-  const email = req.body.email
-  const password = req.body.password
 
-  if(!email || !password){
+  if(!req.body.email || !req.body.password){
     throw new Error()
   }
-  
-  const token = jsonwebtoken.sign(email, process.env.JWT_SECRET)
-
-  res.status(200).json({msg: 'user created', token})
+  myknex.select('pass')
+  .from('usuarios')
+  .where('email', req.body.email)
+  .pluck('pass')
+  .then(passReturned => {
+    const passTest = bcrypt.compare(req.body.password, JSON.stringify(passReturned).replace(/[\[\]"]+/g,''));
+    if(passReturned.length != 0){
+      console.log('é igual, pode entrar');
+      return res.status(200).json({msg: 'logado'})
+    }
+  })
 }
 
 const register = async (req, res) => {
   let hashPass = await bcrypt.hash(req.body.password, 10)
-  myknex('usuarios')
-  .insert({
-      first_name: req.body.first_name,
-      second_name: req.body.second_name,
-      gender: req.body.gender,
-      email: req.body.email,
-      pass: hashPass
-  })
-  .catch(err => {
-      console.log(`[ERROR]: ${err}`);
-  })
-}
-// -----
 
-const verifyUser = async (req, res) => {
-  let exists = myknex.select('email')
+  myknex.select('email')
   .from('usuarios')
   .where('email', req.body.email)
-  .then(result => {
-      if(result.length===0){
-          return false
-      }else return true
+  .then(userReturned => {
+    if(userReturned.length === 0){
+      return myknex('usuarios')
+        .insert({
+          first_name: req.body.first_name,
+          second_name: req.body.second_name,
+          gender: req.body.gender,
+          email: req.body.email,
+          pass: hashPass
+        })
+        .then(()=>{res.status(200).json({msg: "cadastrado com sucesso"})})
+    }
+    return res.status(404).json({msg: "email ja cadastrado"}) 
   })
-  if(!exists){
-    res.status(401).json({exists: exists})
-  }else{
-    res.status(200).json({exists: exists})
-    next()
-  }
+
+}
+
+//talvez esteja redundante com a função de registrar alguem, que verifica se ja existe antes
+const verifyUser = async (req, res, next) => {
+
+  myknex.select('email')
+  .from('usuarios')
+  .where('email', req.body.email)
+  .then(userReturned => {
+    if(userReturned.length === 0){
+      console.log('nao existe esse login');
+      return res.sendStatus(401)
+    } else next()
+  })
 }
 
 const getUsers = async (req, res) => {
@@ -108,6 +118,6 @@ const getUsers = async (req, res) => {
   }
 }
 
-export {
+export  {
   login, register, verifyUser, getUsers
 }

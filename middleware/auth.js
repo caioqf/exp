@@ -11,9 +11,8 @@ const authMiddleware = async (req, res, next) => {
 
     const token = authHeader.split(' ')[1]
 
-
     jsonwebtoken.verify(token, process.env.JWT_SECRET, (err, user)=> {
-        if(err) return res.sendStatus(401)
+        if(err) return res.status(401).json({msg: 'Token informado INVÁLIDO.'})
         next()
     })
 }
