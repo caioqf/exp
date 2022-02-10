@@ -52,7 +52,7 @@ const port = process.env.PORT || 3000;
 const start = async () => {
     try {
         app.listen(port, ()=>
-            console.log(`Servidor rodando em http://localhost:${port}`)
+            console.log(`dev server running at: http://localhost:${port}`)
         );
     } catch (error) {
         console.log(error);
