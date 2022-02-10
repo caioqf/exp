@@ -53,16 +53,18 @@ const login = async (req, res) => {
   if(!req.body.email || !req.body.password){
     throw new Error()
   }
-  myknex.select('pass')
+  await myknex.select('pass')
   .from('usuarios')
   .where('email', req.body.email)
   .pluck('pass')
-  .then(passReturned => {
-    const passTest = bcrypt.compare(req.body.password, JSON.stringify(passReturned).replace(/[\[\]"]+/g,''));
-    if(passReturned.length != 0){
-      console.log('é igual, pode entrar');
-      return res.status(200).json({msg: 'logado'})
+  .then(async (passReturned) => {
+
+    if(passReturned.length != 0 &&  await bcrypt.compare(req.body.password, JSON.stringify(passReturned).replace(/[\[\]"]+/g,''))){
+      return res.status(200).json({msg: 'Logado'})
     }
+    return res.status(401).json({msg: "Email ou senha inválidos"})
+  }).catch(err=> {
+    console.log(`[ERROR]: ${err}`);
   })
 }
 
