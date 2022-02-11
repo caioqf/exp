@@ -10,7 +10,7 @@ router.route('/user/register').post(register)
 router.route('/user/login').post(verifyUser, login)
 
 //auth routes
-router.route('/users').get(getUsers)
+router.route('/users').get(authMiddleware, getUsers)
 
 
 
