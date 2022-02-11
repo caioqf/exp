@@ -8,6 +8,7 @@ export default {
   development: {
     client: 'postgresql',
     connection: {
+      host: 'pg-container',
       database: 'exp',
       port: '5432',
       user: 'postgres',

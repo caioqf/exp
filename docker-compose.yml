@@ -1,0 +1,26 @@
+version: "3.8"
+services:
+  db:
+    image: postgres:14
+    restart: always
+    container_name: pg-container
+    environment:
+      #nao ideal, mas para fins de estudo, suficiente por enquanto
+      POSTGRES_PASSWORD: 1746
+      POSTGRES_USER: postgres
+      POSTGRES_DB: exp
+    volumes:
+      - ./pgdata:/var/lib/postgres/data
+    ports:
+      - '6000:5432'
+    
+  api:
+    build: .
+    container_name: exp-container
+    volumes:
+      - .:/usr/src/app
+    restart: always
+    ports: 
+      - "3000:3000"
+    depends_on:
+      - db
